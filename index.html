@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mon Chat App</title>
+<style>
+body{font-family:Arial;background:#111;color:white;text-align:center}
+#chat{width:90%;max-width:400px;margin:20px auto;background:#222;padding:15px;border-radius:15px;text-align:left;height:300px;overflow-y:auto}
+.msg{margin:8px;padding:8px;border-radius:10px}
+.moi{background:#25D366;color:black;text-align:right}
+.bot{background:#333}
+input{width:70%;padding:10px;border-radius:10px;border:none}
+button{padding:10px;background:#25D366;border:none;border-radius:10px}
+</style>
+</head>
+<body>
+<h2>🤖 Mon Application de Chat</h2>
+<p>Par Cassidy - N'Djamena</p>
+<div id="chat"><div class="msg bot">Salut ! Moi c'est ton assistant. Pose-moi une question !</div></div>
+<input id="input" placeholder="Écris ton message...">
+<button onclick="envoyer()">Envoyer</button>
+
+<script>
+function envoyer(){
+let inp=document.getElementById("input");
+let chat=document.getElementById("chat");
+if(inp.value=="") return;
+chat.innerHTML+='<div class="msg moi">'+inp.value+'</div>';
+let texte=inp.value.toLowerCase();
+let reponse="Je réfléchis... Dis-moi plus !";
+if(texte.includes("salut")||texte.includes("bonjour")) reponse="Salut mon allier ! Comment ça va à N'Djamena ?";
+else if(texte.includes("trading")) reponse="Le trading c'est la discipline. Tu veux que je t'explique une stratégie ?";
+else if(texte.includes("fruit")) reponse="Ah tu veux une vidéo de fruits comme Trendstory ? Bientôt je vais générer ça !";
+else if(texte.includes("etude")||texte.includes("cours")) reponse="On révise quoi ? Maths, anglais, compta ?";
+inp.value="";
+setTimeout(()=>{chat.innerHTML+='<div class="msg bot">'+reponse+'</div>'; chat.scrollTop=chat.scrollHeight;},500);
+chat.scrollTop=chat.scrollHeight;
+}
+</script>
+</body>
+</html>
